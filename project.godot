@@ -13,11 +13,11 @@ config_version=5
 config/name="TempleRun_like"
 run/main_scene="uid://d2ad41ft7jv16"
 config/features=PackedStringArray("4.4", "Forward Plus")
-config/icon="res://icon.svg"
 
 [autoload]
 
 Settings="*res://Scritpts/settings.gd"
+FaceTrackingManager="*res://Scritpts/FaceTrackingManager.gd"
 
 [dotnet]
 

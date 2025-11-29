@@ -432,13 +432,14 @@ mouse_filter = 2
 color = Color(0, 0, 0, 0.54902)
 
 [node name="FacePositionPointer" type="TextureRect" parent="UserInterface"]
+modulate = Color(1, 1, 1, 0.568627)
 layout_mode = 1
 offset_right = 240.0
 offset_bottom = 240.0
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("18_fevyy")
 script = ExtResource("18_b3802")
-smooth_speed = 12.0
+smooth_speed = 17.0
 
 [connection signal="collided" from="Player" to="." method="_on_player_collided"]
 [connection signal="message_received" from="WebSocket_receive" to="." method="_on_web_socket_receive_message_received"]

@@ -1,3 +1,5 @@
+# Autoloadに登録して使用
+
 extends Node
 
 # enum を使うと、"Easy"などの文字列を直接使うより安全で分かりやすくなる
