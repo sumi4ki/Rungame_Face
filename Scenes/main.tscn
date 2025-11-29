@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://b82x4yofhf5q2"]
+[gd_scene load_steps=54 format=3 uid="uid://b82x4yofhf5q2"]
 
 [ext_resource type="Script" uid="uid://cj2cntriqr25t" path="res://Scritpts/main.gd" id="1_b3802"]
 [ext_resource type="PackedScene" uid="uid://cfrq0wbrv3nt7" path="res://Scenes/pause_canvas.tscn" id="2_fevyy"]
@@ -17,7 +17,8 @@
 [ext_resource type="Script" uid="uid://nx284e201d6t" path="res://Scritpts/camera_3d.gd" id="15_kltya"]
 [ext_resource type="Script" uid="uid://dc6uqga7qissg" path="res://Scritpts/web_socket_receive.gd" id="16_e08e2"]
 [ext_resource type="FontFile" uid="uid://b81osdtyc14l0" path="res://Fonts/MPLUSRounded1c-Medium.ttf" id="17_neg2b"]
-[ext_resource type="Script" uid="uid://b6e84cn8w7bh2" path="res://Scritpts/label.gd" id="18_r33sp"]
+[ext_resource type="Script" uid="uid://vgetc4i5spxx" path="res://Scritpts/face_position_pointer.gd" id="18_b3802"]
+[ext_resource type="Texture2D" uid="uid://cdka7oce1iefo" path="res://face_pointer80.png" id="18_fevyy"]
 
 [sub_resource type="Resource" id="Resource_82xsv"]
 script = ExtResource("5_ee4r6")
@@ -298,6 +299,10 @@ z_pos_list = Array[int]([])
 float_amount_list = Array[float]([])
 metadata/_custom_type_script = "uid://fq1bgubwinrk"
 
+[sub_resource type="GDScript" id="GDScript_fevyy"]
+script/source = "extends Control
+"
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vivmo"]
 bg_color = Color(0, 0, 0, 0.180392)
 
@@ -354,6 +359,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+script = SubResource("GDScript_fevyy")
 
 [node name="ModeLabel" type="Label" parent="UserInterface"]
 custom_minimum_size = Vector2(150, 60)
@@ -365,7 +371,6 @@ offset_bottom = 66.0
 theme_override_fonts/font = ExtResource("17_neg2b")
 theme_override_font_sizes/font_size = 32
 text = "モード"
-script = ExtResource("18_r33sp")
 
 [node name="Pause_Button" type="Button" parent="UserInterface"]
 z_index = 1
@@ -426,21 +431,17 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 0.54902)
 
-[node name="ColorRect" type="ColorRect" parent="UserInterface"]
+[node name="FacePositionPointer" type="TextureRect" parent="UserInterface"]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_right = 240.0
+offset_bottom = 240.0
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("18_fevyy")
+script = ExtResource("18_b3802")
+smooth_speed = 12.0
 
 [connection signal="collided" from="Player" to="." method="_on_player_collided"]
 [connection signal="message_received" from="WebSocket_receive" to="." method="_on_web_socket_receive_message_received"]
 [connection signal="message_received" from="WebSocket_receive" to="Player" method="_on_web_socket_receive_message_received"]
+[connection signal="message_received" from="WebSocket_receive" to="UserInterface/FacePositionPointer" method="_on_web_socket_receive_message_received"]
 [connection signal="pressed" from="UserInterface/Pause_Button" to="." method="_on_pause_button_pressed"]

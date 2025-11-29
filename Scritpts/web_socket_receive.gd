@@ -24,12 +24,12 @@ func _process(_delta):
 			var msg = socket.get_packet().get_string_from_utf8()
 			var data = JSON.parse_string(msg)
 			if typeof(data) == TYPE_DICTIONARY:
+				# _on_web_socket_receive_message_received イベントを発火させる（顔位置を送る）
 				emit_signal("message_received", data)
 	elif socket.get_ready_state() == WebSocketPeer.STATE_CLOSED:
 		print("WebSocket 接続が閉じられました。")
 		set_process(false)
 
-# ▼▼▼ 新しくこの関数を追加 ▼▼▼
 # 他のスクリプトからメッセージ送信を依頼するための公開関数
 func send_message(data: Dictionary):
 	if socket.get_ready_state() == WebSocketPeer.STATE_OPEN:

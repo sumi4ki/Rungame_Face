@@ -11,7 +11,7 @@ enum SlideMode { TIMER, HOLD }
 # 現在のスライディングモードを保持する変数（デフォルトはTIMER）
 var current_slide_mode: SlideMode = SlideMode.TIMER
 
-var jump_velocity_threshold := 2.0 # 顔を速く動かしたときだけ反応
+var jump_velocity_threshold := 2.5 # 顔を速く動かしたときだけ反応
 var sliding_velocity_threshold := 1.5 # スライディングは発動しづらいから1.5中心にする
 
 # タイトル画面から「はじめから」プレイする時に呼び出すリセット関数

@@ -136,7 +136,6 @@ func start_sliding():
 
 	# ▼▼▼ モードに応じて処理を分岐 ▼▼▼
 	if Settings.current_slide_mode == Settings.SlideMode.TIMER:
-		# 従来通りタイマーを起動
 		sliding_timer.start()
 	elif Settings.current_slide_mode == Settings.SlideMode.HOLD:
 		# ホールドモードの場合、移動量の累積をリセットして記録開始
@@ -146,7 +145,7 @@ func start_sliding():
 func stop_sliding():
 	is_sliding = false
 	# アニメーション終了時にrunに戻るロジックが既にあるので、
-	# is_sliding を false にするだけでOK
+	# is_sliding を false にするだけ
 
 func Jump():
 	velocity.y = jump_velocity

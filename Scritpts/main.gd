@@ -67,17 +67,12 @@ func _unhandled_input(event):
 		websocket.send_message(message)
 
 func _on_web_socket_receive_message_received(data: Dictionary) -> void:
-	# "status"キーがあるかチェック (カメラ準備メッセージ)
+	# "status"キーがあるかチェック (カメラ準備メッセージ). カメラ初期化時に"status"を受信
 	if data.has("status"):
 		if data["status"] == "camera_ready":
 			chunk_director.start_spawning()
 		elif data["status"] == "camera_failed":
 			print("カメラの起動に失敗しました。")
-			# status_label.text = "準備完了！"
-			# start_button.disabled = false
-		# elif data["status"] == "camera_failed":
-			# status_label.text = "カメラの起動に失敗しました。"
-
 
 func _on_pause_button_pressed() -> void:
 	# 1. ポーズメニューのインスタンスを作成
