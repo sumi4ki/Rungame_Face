@@ -1,0 +1,53 @@
+[gd_scene load_steps=4 format=3 uid="uid://d2ad41ft7jv16"]
+
+[ext_resource type="Script" uid="uid://dyyrs72w7v2ij" path="res://Scritpts/title.gd" id="1_ekrfg"]
+[ext_resource type="FontFile" uid="uid://b81osdtyc14l0" path="res://Fonts/MPLUSRounded1c-Medium.ttf" id="2_fp2oq"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oyqm6"]
+bg_color = Color(0.569282, 0.631757, 0.417047, 1)
+
+[node name="title_Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ekrfg")
+
+[node name="TITLE" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_fp2oq")
+theme_override_font_sizes/font_size = 50
+text = "ランゲーム（顔）"
+
+[node name="START_BUTTON" type="Button" parent="."]
+custom_minimum_size = Vector2(200, 60)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -100.0
+offset_top = -60.0
+offset_right = 100.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("2_fp2oq")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_oyqm6")
+text = "スタート"
+
+[connection signal="pressed" from="START_BUTTON" to="." method="_on_start_button_pressed"]

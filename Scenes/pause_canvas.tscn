@@ -1,0 +1,223 @@
+[gd_scene load_steps=8 format=3 uid="uid://cfrq0wbrv3nt7"]
+
+[ext_resource type="FontFile" uid="uid://b81osdtyc14l0" path="res://Fonts/MPLUSRounded1c-Medium.ttf" id="1_hw8fa"]
+[ext_resource type="Script" uid="uid://bwfeec28vmvp2" path="res://Scritpts/pause_canvas.gd" id="1_s2wdr"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8ef18"]
+bg_color = Color(0.487024, 0.672187, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eaaj5"]
+bg_color = Color(0.913019, 0.417859, 0.16943, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hw8fa"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s2wdr"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5d1cn"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[node name="PauseCanvas" type="CanvasLayer" node_paths=PackedStringArray("JumpSensSlider", "SlidingSenSlider")]
+script = ExtResource("1_s2wdr")
+JumpSensSlider = NodePath("Control/jump_sens_slider")
+SlidingSenSlider = NodePath("Control/sliding_sens_slider")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="to_TITLE" type="Button" parent="Control"]
+z_index = 1
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -100.0
+offset_top = -106.0
+offset_right = 100.0
+offset_bottom = -56.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("1_hw8fa")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_8ef18")
+text = "タイトルへ"
+
+[node name="resume" type="Button" parent="Control"]
+z_index = 1
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -100.0
+offset_top = -172.0
+offset_right = 100.0
+offset_bottom = -122.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("1_hw8fa")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_eaaj5")
+text = "もどる"
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 2.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.41, 0.41, 0.41, 0.501961)
+
+[node name="jump_sens_slider" type="HSlider" parent="Control"]
+custom_minimum_size = Vector2(200, 30)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -242.0
+offset_top = 97.0
+offset_right = -42.0
+offset_bottom = 127.0
+grow_horizontal = 2
+grow_vertical = 2
+min_value = 1.0
+max_value = 3.0
+step = 0.5
+value = 2.0
+
+[node name="jump_sens" type="Label" parent="Control/jump_sens_slider"]
+custom_minimum_size = Vector2(120, 50)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -75.0
+offset_top = -61.0
+offset_right = 75.0
+offset_bottom = -11.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_hw8fa")
+theme_override_font_sizes/font_size = 25
+text = "ジャンプ閾値"
+
+[node name="sliding_sens_slider" type="HSlider" parent="Control"]
+custom_minimum_size = Vector2(200, 30)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 36.0
+offset_top = 97.0
+offset_right = 236.0
+offset_bottom = 127.0
+grow_horizontal = 2
+grow_vertical = 2
+min_value = 0.5
+max_value = 2.5
+step = 0.5
+value = 1.5
+
+[node name="sliding_sens" type="Label" parent="Control/sliding_sens_slider"]
+custom_minimum_size = Vector2(120, 50)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -75.0
+offset_top = -61.0
+offset_right = 75.0
+offset_bottom = -11.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_hw8fa")
+theme_override_font_sizes/font_size = 25
+text = "スライディング閾値"
+
+[node name="to_easy" type="Button" parent="Control"]
+custom_minimum_size = Vector2(30, 15)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -60.0
+offset_top = -97.0
+offset_bottom = -67.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("1_hw8fa")
+theme_override_font_sizes/font_size = 10
+theme_override_styles/normal = SubResource("StyleBoxFlat_hw8fa")
+text = "to easy"
+
+[node name="to_medium" type="Button" parent="Control"]
+custom_minimum_size = Vector2(50, 25)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -71.0
+offset_top = -66.0
+offset_right = 12.0
+offset_bottom = -35.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("1_hw8fa")
+theme_override_font_sizes/font_size = 10
+theme_override_styles/normal = SubResource("StyleBoxFlat_s2wdr")
+text = "to medium
+"
+
+[node name="to_hard" type="Button" parent="Control"]
+custom_minimum_size = Vector2(50, 25)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -62.0
+offset_top = -32.0
+offset_bottom = -2.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("1_hw8fa")
+theme_override_font_sizes/font_size = 10
+theme_override_styles/normal = SubResource("StyleBoxFlat_5d1cn")
+text = "to hard"
+
+[connection signal="pressed" from="Control/to_TITLE" to="." method="_on_to_title_pressed"]
+[connection signal="pressed" from="Control/resume" to="." method="_on_resume_pressed"]
+[connection signal="value_changed" from="Control/jump_sens_slider" to="." method="_on_jump_sens_slider_value_changed"]
+[connection signal="value_changed" from="Control/sliding_sens_slider" to="." method="_on_sliding_sens_slider_value_changed"]
+[connection signal="pressed" from="Control/to_easy" to="." method="_on_to_easy_pressed"]
+[connection signal="pressed" from="Control/to_medium" to="." method="_on_to_medium_pressed"]
+[connection signal="pressed" from="Control/to_hard" to="." method="_on_to_hard_pressed"]

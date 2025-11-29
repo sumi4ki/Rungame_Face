@@ -1,0 +1,39 @@
+[gd_scene load_steps=7 format=3 uid="uid://2i3b42o5t6nr"]
+
+[ext_resource type="Script" uid="uid://bov8ccxj11vvb" path="res://Scritpts/obstacle.gd" id="1_s8oag"]
+[ext_resource type="Script" uid="uid://unv53ecqof6p" path="res://Obstacles/front_hitbox.gd" id="2_gmr4u"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_s8oag"]
+size = Vector3(1, 0.984436, 0.0307617)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_aubd6"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_vcivv"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gmr4u"]
+albedo_color = Color(0.240418, 0.234249, 0.368847, 1)
+metallic_specular = 0.58
+roughness = 0.85
+
+[node name="Obstacle" type="Node3D"]
+script = ExtResource("1_s8oag")
+
+[node name="FrontHitbox" type="Area3D" parent="."]
+script = ExtResource("2_gmr4u")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FrontHitbox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
+shape = SubResource("BoxShape3D_s8oag")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_aubd6")
+debug_color = Color(0.777548, 0.425497, 0.301106, 0.42)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+mesh = SubResource("BoxMesh_vcivv")
+skeleton = NodePath("../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_gmr4u")
+
+[connection signal="body_entered" from="FrontHitbox" to="FrontHitbox" method="_on_body_entered"]

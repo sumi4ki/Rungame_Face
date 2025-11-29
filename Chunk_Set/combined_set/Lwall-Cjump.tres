@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ChunkData" load_steps=5 format=3 uid="uid://bxawq7ivghlis"]
+
+[ext_resource type="Script" uid="uid://c16mlyirwc8xk" path="res://Scritpts/ObstacleData.gd" id="1_xb6r1"]
+[ext_resource type="Resource" uid="uid://bvi2x8doqicwt" path="res://Obstacles_locate/wall_left_0.tres" id="2_vmjiy"]
+[ext_resource type="Script" uid="uid://fq1bgubwinrk" path="res://Scritpts/ChunkData.gd" id="2_wmk43"]
+[ext_resource type="Resource" uid="uid://dmdis5xg5vhf3" path="res://Obstacles_locate/wall_center_0.tres" id="3_ougxv"]
+
+[resource]
+script = ExtResource("2_wmk43")
+difficulty = "Easy"
+length = 20
+obstacles = Array[ExtResource("1_xb6r1")]([ExtResource("2_vmjiy"), ExtResource("3_ougxv")])
+z_pos_list = Array[int]([1, 1])
+float_amount_list = Array[float]([0.0, -4.5])
+metadata/_custom_type_script = "uid://fq1bgubwinrk"

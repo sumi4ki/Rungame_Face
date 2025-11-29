@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ObstacleData" load_steps=2 format=3 uid="uid://cqe2hb8pmpn8o"]
+
+[ext_resource type="Script" uid="uid://c16mlyirwc8xk" path="res://Scritpts/ObstacleData.gd" id="1_cndb7"]
+
+[resource]
+script = ExtResource("1_cndb7")
+type = "slide"
+lane = 1
+z_pos = 0
+metadata/_custom_type_script = "uid://c16mlyirwc8xk"

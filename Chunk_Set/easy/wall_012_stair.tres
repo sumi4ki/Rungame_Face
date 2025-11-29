@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="ChunkData" load_steps=7 format=3 uid="uid://b5bylhnhwi7s2"]
+
+[ext_resource type="Script" uid="uid://c16mlyirwc8xk" path="res://Scritpts/ObstacleData.gd" id="1_0i3dl"]
+[ext_resource type="Script" uid="uid://fq1bgubwinrk" path="res://Scritpts/ChunkData.gd" id="1_vgsk1"]
+[ext_resource type="Resource" uid="uid://bvi2x8doqicwt" path="res://Obstacles_locate/wall_left_0.tres" id="2_i270x"]
+[ext_resource type="Resource" uid="uid://dmdis5xg5vhf3" path="res://Obstacles_locate/wall_center_0.tres" id="3_pkdn3"]
+[ext_resource type="Resource" uid="uid://bvk8jxvfo1nwk" path="res://Obstacles_locate/wall_right_0.tres" id="4_ydt8k"]
+[ext_resource type="Resource" uid="uid://cqe2hb8pmpn8o" path="res://Obstacles_locate/bar-01.tres" id="5_lw0t4"]
+
+[resource]
+script = ExtResource("1_vgsk1")
+difficulty = "Easy"
+length = 100
+obstacles = Array[ExtResource("1_0i3dl")]([ExtResource("2_i270x"), ExtResource("3_pkdn3"), ExtResource("4_ydt8k"), ExtResource("5_lw0t4"), ExtResource("5_lw0t4"), ExtResource("5_lw0t4")])
+z_pos_list = Array[int]([8, 18, 28, 38, 58, 78])
+float_amount_list = Array[float]([1.2, 1.2, 1.2, 0.0, 1.2, 0.0])
+metadata/_custom_type_script = "uid://fq1bgubwinrk"

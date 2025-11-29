@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ObstacleSceneSet" load_steps=5 format=3 uid="uid://dhynyndi6tklu"]
+
+[ext_resource type="Script" uid="uid://slh07r7a0sak" path="res://Scritpts/ObstacleSceneSet.gd" id="1_858ib"]
+[ext_resource type="PackedScene" uid="uid://2i3b42o5t6nr" path="res://Obstacles/base.tscn" id="1_bm1d0"]
+[ext_resource type="PackedScene" uid="uid://kj3pt7xaih1c" path="res://Obstacles/bar_horizontal.tscn" id="3_evpgf"]
+[ext_resource type="PackedScene" uid="uid://xw01n60stg35" path="res://Obstacles/wall.tscn" id="4_x8lya"]
+
+[resource]
+script = ExtResource("1_858ib")
+jump = ExtResource("1_bm1d0")
+wall = ExtResource("4_x8lya")
+slide = ExtResource("3_evpgf")
+metadata/_custom_type_script = "uid://slh07r7a0sak"
