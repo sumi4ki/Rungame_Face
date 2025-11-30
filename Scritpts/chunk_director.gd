@@ -20,6 +20,7 @@ var obstacle_scenes := {
 # ▼ 生成ロジックの設定
 @export var spawn_ahead_distance := 60.0 # プレイヤーの何m先にチャンクを生成するか
 @export var despawn_behind_distance := 20.0 # プレイヤーの何m後ろのチャンクを削除するか
+@export var spawn_space := 3	# playerが召喚されたあとのスペース
 
 @export var play_area_width: float = 21.0
 @export var lane_width: float = 7.0
@@ -57,6 +58,7 @@ func _ready() -> void:
 			player.speed = 18.0
 			current_chunk_index = 0
 			next_chunk_z_pos = 0.0
+			AudioManager.set_bgm_pitch(1.0)
 		
 		Settings.Difficulty.MEDIUM:
 			print("Mediumセクションからリスタートします。")
@@ -64,6 +66,7 @@ func _ready() -> void:
 			current_chunk_index = easy_section_end_index
 			# Easyセクションのチャンクをスキップし、その分の長さを計算
 			next_chunk_z_pos = calculate_skipped_length(easy_section_end_index)
+			AudioManager.set_bgm_pitch(1.15)
 
 		Settings.Difficulty.HARD:
 			print("Hardセクションからリスタートします。")
@@ -71,6 +74,7 @@ func _ready() -> void:
 			current_chunk_index = medium_section_end_index
 			# EasyとMediumセクションをスキップ
 			next_chunk_z_pos = calculate_skipped_length(medium_section_end_index)
+			AudioManager.set_bgm_pitch(1.3)
 	# 計算した開始位置を、Mainが後で使えるように保存しておく
 	self.start_z_pos = next_chunk_z_pos
 			
@@ -86,7 +90,7 @@ func calculate_skipped_length(end_index: int) -> float:
 
 # 起動時に最初の平坦な床をいくつか生成する関数
 func spawn_initial_floor(start_pos: float):
-	var initial_floor_block_length = 20 + spawn_ahead_distance # + initial_generate_obs_offset # 最初の床の長さ
+	var initial_floor_block_length = spawn_space + spawn_ahead_distance # + initial_generate_obs_offset # 最初の床の長さ
 	var chunk_parent = Node3D.new()
 	# 引数で受け取った start_pos をチャンクの親ノードのZ座標に設定
 	chunk_parent.position.z = start_pos
@@ -137,10 +141,6 @@ func _process(_delta):
 func start_spawning():
 	print("ChunkDirector: 障害物生成を開始します。")
 	is_ready_to_spawn = true
-	# 最初のチャンクを配置する位置を初期化
-	# 最初の平坦な床は無視して、その先からチャンクを生成する
-	# next_chunk_z_pos = 0 
-	# next_chunk_z_pos = player.global_position.z + spawn_ahead_distance - 10 # + initial_generate_obs_offset
 
 func spawn_new_chunk():
 
@@ -153,25 +153,24 @@ func spawn_new_chunk():
 			main.trigger_game_clear()
 		return
 
-	## 生成するチャンクをランダムピック （今回はmaster_listから順番に生成していく方針にする）
-	# var selected_chunk_data: ChunkData = easy_chunks.pick_random()
-
-	# ランダムではなく、マスターリストから順番にチャンクデータを取得
+	# マスターリストから順番にチャンクデータを取得
 	var selected_chunk_data: ChunkData = master_chunk_list[current_chunk_index]
-	# print(current_chunk_index,": ", easy_section_end_index,": ",  medium_section_end_index)
-	# current_chunk_index はチャンクを削除するときにインクリメントする。
-	# ▼▼▼ 進行状況をSettingsに保存 ▼▼▼
+
+	# ▼▼▼ 進行状況をSettingsに保存. モード切替 ▼▼▼
 	if current_chunk_index == easy_section_end_index + 1: # > にしたいが、それではダメ。+1が丁度クリアしたところを指す
 		player.speed = 20.0
 		Settings.start_section = Settings.Difficulty.MEDIUM
 		print("チェックポイントをMediumに更新しました。")
 		main.update_mode_display(Settings.Difficulty.MEDIUM) #, player.speed)
+		AudioManager.set_bgm_pitch(1.15)
 		
 	elif current_chunk_index == medium_section_end_index + 1:
 		player.speed = 24.0
 		Settings.start_section = Settings.Difficulty.HARD
 		print("チェックポイントをHardに更新しました。")
 		main.update_mode_display(Settings.Difficulty.HARD) #, player.speed)
+		AudioManager.set_bgm_pitch(1.3)
+		# main.setBGMPitchFromDifficulty()
 	current_chunk_index += 1
 
 	# 1. チャンク全体をまとめる親ノードを作成

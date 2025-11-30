@@ -1,11 +1,12 @@
-[gd_scene load_steps=54 format=3 uid="uid://b82x4yofhf5q2"]
+[gd_scene load_steps=58 format=3 uid="uid://b82x4yofhf5q2"]
 
 [ext_resource type="Script" uid="uid://cj2cntriqr25t" path="res://Scritpts/main.gd" id="1_b3802"]
 [ext_resource type="PackedScene" uid="uid://cfrq0wbrv3nt7" path="res://Scenes/pause_canvas.tscn" id="2_fevyy"]
 [ext_resource type="PackedScene" uid="uid://d3a40kflpk5yj" path="res://Chunk_Set/combined3_set/results_screen.tscn" id="3_hibaj"]
-[ext_resource type="AudioStream" uid="uid://dvlgcn45i47ec" path="res://Audio/decisionButton.ogg" id="4_hibaj"]
+[ext_resource type="AudioStream" uid="uid://dvlgcn45i47ec" path="res://Audio/SE/decisionButton.ogg" id="4_hibaj"]
 [ext_resource type="Script" uid="uid://cfmqtd5o6memd" path="res://Scritpts/chunk_director.gd" id="4_pdsj5"]
 [ext_resource type="Script" uid="uid://fq1bgubwinrk" path="res://Scritpts/ChunkData.gd" id="5_ee4r6"]
+[ext_resource type="AudioStream" uid="uid://chsxc4s25wisw" path="res://Audio/BGM/gameBGM.ogg" id="5_pdsj5"]
 [ext_resource type="Resource" uid="uid://1e8fvdubqcqx" path="res://Chunk_Set/easy/free_space.tres" id="6_gt3je"]
 [ext_resource type="Script" uid="uid://c16mlyirwc8xk" path="res://Scritpts/ObstacleData.gd" id="7_3pmx8"]
 [ext_resource type="Resource" uid="uid://bvi2x8doqicwt" path="res://Obstacles_locate/wall_left_0.tres" id="8_u50mg"]
@@ -306,12 +307,31 @@ bg_color = Color(0, 0, 0, 0.180392)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w48qg"]
 bg_color = Color(0.494118, 0.486275, 0.211765, 0)
 
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_pdsj5"]
+sky_top_color = Color(0, 0, 0, 1)
+sky_horizon_color = Color(0.714448, 0.783293, 0.939763, 1)
+sky_curve = 1.00908
+sky_cover_modulate = Color(0.991164, 0.991164, 0.991164, 1)
+ground_bottom_color = Color(0.202425, 0.216471, 0.276505, 1)
+ground_horizon_color = Color(0.713726, 0.784314, 0.941176, 1)
+ground_curve = 0.044383
+
+[sub_resource type="Sky" id="Sky_ee4r6"]
+sky_material = SubResource("ProceduralSkyMaterial_pdsj5")
+
+[sub_resource type="Environment" id="Environment_u50mg"]
+background_mode = 2
+sky = SubResource("Sky_ee4r6")
+ambient_light_source = 3
+ambient_light_color = Color(0, 0.253764, 0.669895, 1)
+
 [node name="Main" type="Node" node_paths=PackedStringArray("player")]
 script = ExtResource("1_b3802")
 player = NodePath("Player")
 pause_menu_scene = ExtResource("2_fevyy")
 results_screen_scene = ExtResource("3_hibaj")
 button_click_sound = ExtResource("4_hibaj")
+game_bgm = ExtResource("5_pdsj5")
 
 [node name="ChunkDirector" type="Node" parent="." node_paths=PackedStringArray("player")]
 script = ExtResource("4_pdsj5")
@@ -437,6 +457,9 @@ scale = Vector2(0.3, 0.3)
 texture = ExtResource("18_fevyy")
 script = ExtResource("18_b3802")
 smooth_speed = 17.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_u50mg")
 
 [connection signal="collided" from="Player" to="." method="_on_player_collided"]
 [connection signal="message_received" from="WebSocket_receive" to="." method="_on_web_socket_receive_message_received"]

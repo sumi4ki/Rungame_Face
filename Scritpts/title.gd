@@ -1,7 +1,13 @@
 extends Control
 
 @export var description_scene: PackedScene
+@export var title_bgm: AudioStream
 @export var button_click_sound: AudioStream
+
+func _ready():
+	if title_bgm:
+		AudioManager.play_bgm(title_bgm, -10.0)
+		AudioManager.set_bgm_pitch(0.8)
 
 func _on_start_button_pressed() -> void:
 	# シーンが変わっても音が鳴る様に AudioManager に音鳴らしを依頼する

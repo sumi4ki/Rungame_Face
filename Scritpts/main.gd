@@ -19,11 +19,15 @@ var is_game_cleared := false
 @export var results_screen_scene: PackedScene
 
 @export var button_click_sound: AudioStream
+@export var game_bgm: AudioStream
 
 func _ready():
 	# アンミュート
 	var master_bus_index = AudioServer.get_bus_index("Master")
 	AudioServer.set_bus_mute(master_bus_index, false)
+	# BGM再生
+	if game_bgm:
+		AudioManager.play_bgm(game_bgm, -10.0)
 	# ChunkDirectorから正しい開始位置を取得してプレイヤーを移動させる
 	player.global_position.z = chunk_director.start_z_pos
 	update_mode_display(Settings.start_section)#, player.speed
@@ -105,3 +109,11 @@ func update_mode_display(difficulty_enum):	#, speed
 			mode_text = "むずかしい"
 
 	mode_label.text = " " + mode_text	# + "speed: " + str(speed)
+
+func setBGMPitchFromDifficulty():
+	if Settings.Difficulty.EASY:
+		AudioManager.set_bgm_pitch(1.0)
+	elif Settings.Difficulty.MEDIUM:
+		AudioManager.set_bgm_pitch(1.15)
+	elif Settings.Difficulty.HARD:
+		AudioManager.set_bgm_pitch(1.3)

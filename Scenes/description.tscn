@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bbhd61twfwi5r" path="res://Scritpts/description.gd" id="1_0pri1"]
 [ext_resource type="FontFile" uid="uid://b81osdtyc14l0" path="res://Fonts/MPLUSRounded1c-Medium.ttf" id="1_l0p43"]
 [ext_resource type="Texture2D" uid="uid://hlajv76gryrs" path="res://Images/ランゲーム説明.png" id="2_ndt3t"]
-[ext_resource type="AudioStream" uid="uid://dvlgcn45i47ec" path="res://Audio/decisionButton.ogg" id="4_d043a"]
+[ext_resource type="AudioStream" uid="uid://dvlgcn45i47ec" path="res://Audio/SE/decisionButton.ogg" id="4_d043a"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0pri1"]
 bg_color = Color(0.913019, 0.417859, 0.16943, 1)

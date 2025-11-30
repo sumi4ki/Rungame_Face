@@ -2,7 +2,7 @@
 
 [ext_resource type="FontFile" uid="uid://b81osdtyc14l0" path="res://Fonts/MPLUSRounded1c-Medium.ttf" id="1_hw8fa"]
 [ext_resource type="Script" uid="uid://bwfeec28vmvp2" path="res://Scritpts/pause_canvas.gd" id="1_s2wdr"]
-[ext_resource type="AudioStream" uid="uid://dvlgcn45i47ec" path="res://Audio/decisionButton.ogg" id="2_cm2e6"]
+[ext_resource type="AudioStream" uid="uid://dvlgcn45i47ec" path="res://Audio/SE/decisionButton.ogg" id="2_cm2e6"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8ef18"]
 bg_color = Color(0.487024, 0.672187, 0, 1)
