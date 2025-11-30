@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://cj2cntriqr25t" path="res://Scritpts/main.gd" id="1_b3802"]
 [ext_resource type="PackedScene" uid="uid://cfrq0wbrv3nt7" path="res://Scenes/pause_canvas.tscn" id="2_fevyy"]
 [ext_resource type="PackedScene" uid="uid://d3a40kflpk5yj" path="res://Chunk_Set/combined3_set/results_screen.tscn" id="3_hibaj"]
+[ext_resource type="AudioStream" uid="uid://dvlgcn45i47ec" path="res://Audio/decisionButton.ogg" id="4_hibaj"]
 [ext_resource type="Script" uid="uid://cfmqtd5o6memd" path="res://Scritpts/chunk_director.gd" id="4_pdsj5"]
 [ext_resource type="Script" uid="uid://fq1bgubwinrk" path="res://Scritpts/ChunkData.gd" id="5_ee4r6"]
 [ext_resource type="Resource" uid="uid://1e8fvdubqcqx" path="res://Chunk_Set/easy/free_space.tres" id="6_gt3je"]
@@ -18,7 +19,7 @@
 [ext_resource type="Script" uid="uid://dc6uqga7qissg" path="res://Scritpts/web_socket_receive.gd" id="16_e08e2"]
 [ext_resource type="FontFile" uid="uid://b81osdtyc14l0" path="res://Fonts/MPLUSRounded1c-Medium.ttf" id="17_neg2b"]
 [ext_resource type="Script" uid="uid://vgetc4i5spxx" path="res://Scritpts/face_position_pointer.gd" id="18_b3802"]
-[ext_resource type="Texture2D" uid="uid://cdka7oce1iefo" path="res://face_pointer80.png" id="18_fevyy"]
+[ext_resource type="Texture2D" uid="uid://cdka7oce1iefo" path="res://Images/face_pointer80.png" id="18_fevyy"]
 
 [sub_resource type="Resource" id="Resource_82xsv"]
 script = ExtResource("5_ee4r6")
@@ -299,10 +300,6 @@ z_pos_list = Array[int]([])
 float_amount_list = Array[float]([])
 metadata/_custom_type_script = "uid://fq1bgubwinrk"
 
-[sub_resource type="GDScript" id="GDScript_fevyy"]
-script/source = "extends Control
-"
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vivmo"]
 bg_color = Color(0, 0, 0, 0.180392)
 
@@ -314,6 +311,7 @@ script = ExtResource("1_b3802")
 player = NodePath("Player")
 pause_menu_scene = ExtResource("2_fevyy")
 results_screen_scene = ExtResource("3_hibaj")
+button_click_sound = ExtResource("4_hibaj")
 
 [node name="ChunkDirector" type="Node" parent="." node_paths=PackedStringArray("player")]
 script = ExtResource("4_pdsj5")
@@ -359,7 +357,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-script = SubResource("GDScript_fevyy")
 
 [node name="ModeLabel" type="Label" parent="UserInterface"]
 custom_minimum_size = Vector2(150, 60)

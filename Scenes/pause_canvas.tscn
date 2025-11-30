@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://cfrq0wbrv3nt7"]
+[gd_scene load_steps=9 format=3 uid="uid://cfrq0wbrv3nt7"]
 
 [ext_resource type="FontFile" uid="uid://b81osdtyc14l0" path="res://Fonts/MPLUSRounded1c-Medium.ttf" id="1_hw8fa"]
 [ext_resource type="Script" uid="uid://bwfeec28vmvp2" path="res://Scritpts/pause_canvas.gd" id="1_s2wdr"]
+[ext_resource type="AudioStream" uid="uid://dvlgcn45i47ec" path="res://Audio/decisionButton.ogg" id="2_cm2e6"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8ef18"]
 bg_color = Color(0.487024, 0.672187, 0, 1)
@@ -22,6 +23,7 @@ bg_color = Color(0.6, 0.6, 0.6, 0)
 script = ExtResource("1_s2wdr")
 JumpSensSlider = NodePath("Control/jump_sens_slider")
 SlidingSenSlider = NodePath("Control/sliding_sens_slider")
+button_sound = ExtResource("2_cm2e6")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3

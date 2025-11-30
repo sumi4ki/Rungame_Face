@@ -17,6 +17,10 @@ var upward_face_movement_while_sliding: float = 0.0
 @onready var collider = $CollisionShape3D
 @onready var main = get_node("/root/Main")
 @onready var chunk_director = get_node("/root/Main/ChunkDirector")
+@onready var jump_sound = $SoundEffects/JumpSound
+@onready var sliding_sound = $SoundEffects/SlidingSound
+@onready var footsteps_sound = $SoundEffects/FootstepsSound
+@onready var collision_sound = $SoundEffects/CollisionSound
 # websocket 用
 var face_x := 0.5  # 中央
 var face_y := 0.5
@@ -37,8 +41,10 @@ func _ready():
 	sliding_shape.height = default_shape.height * 0.4
 
 func _physics_process(delta):
+	if Engine.time_scale == 0.0:
+		return
 	if main.is_game_over:
-		return # 入力処理をスキップ
+		return 
 	velocity.z = speed  # 奥方向に常に進む
 
 	var target_x: float
@@ -91,7 +97,7 @@ func _physics_process(delta):
 			gravity = jump_gravity_down
 		velocity.y -= gravity * delta
 
-	# 4. ジャンプ・スライディングの入力
+	# 3. ジャンプ・スライディングの入力
 	if is_grounded:
 		if current_control_mode == "keyboard":
 			if Input.is_action_just_pressed("move_up"):
@@ -99,17 +105,18 @@ func _physics_process(delta):
 			if Input.is_action_just_pressed("move_down") and !is_sliding:
 				start_sliding()
 		elif current_control_mode == "face":
-			# 顔のY座標が上（0.1以下）でジャンプ、下（0.9以上）でスライディング。移動速度メイン。位置は補助的役割
-			if face_y <= 0.1:
-				Jump()
-			elif face_y >= 0.9 and !is_sliding:
-				start_sliding()
-			# 顔の移動速度による判定
-			var face_y_velocity = (face_y - previous_face_y) / delta
-			if face_y_velocity < -Settings.jump_velocity_threshold:
-				Jump()
-			elif face_y_velocity > Settings.sliding_velocity_threshold and !is_sliding:
-				start_sliding()
+			var diff = face_y - previous_face_y
+			# ワープチェック：もし1フレームで顔が画面の10%以上 (0.1) 動いたらスキップ
+			if abs(diff) > 0.1: 
+					previous_face_y = face_y # 現在の値に同期
+			else:
+				# 顔の移動速度による判定
+				var face_y_velocity = diff / delta
+
+				if face_y_velocity < -Settings.jump_velocity_threshold:
+						Jump()
+				elif face_y_velocity > Settings.sliding_velocity_threshold and !is_sliding:
+						start_sliding()
 
 	previous_face_y = face_y
 
@@ -129,8 +136,15 @@ func _physics_process(delta):
 		if upward_face_movement_while_sliding > slide_exit_threshold:
 			stop_sliding()
 
+func play_footstep():
+	# 走っている時だけ鳴らす
+	if is_on_floor():
+		footsteps_sound.pitch_scale = randf_range(0.8, 1.2)
+		footsteps_sound.play()
+
 func start_sliding():
 	print("slidig start")
+	sliding_sound.play()
 	$AnimationPlayer.play("slide")
 	is_sliding = true
 
@@ -143,12 +157,18 @@ func start_sliding():
 
 # ▼▼▼ スライディングを終了する共通関数を作成 ▼▼▼
 func stop_sliding():
+	sliding_sound.stop()
 	is_sliding = false
 	# アニメーション終了時にrunに戻るロジックが既にあるので、
 	# is_sliding を false にするだけ
 
 func Jump():
 	velocity.y = jump_velocity
+	# SE
+	sliding_sound.stop()
+	jump_sound.pitch_scale = randf_range(0.9, 1.1)
+	jump_sound.play()
+	# Animation
 	$AnimationPlayer.play("jump")
 
 func _on_sliding_timer_timeout() -> void:
@@ -156,6 +176,9 @@ func _on_sliding_timer_timeout() -> void:
 
 func dead():
 	emit_signal("collided")
+	# Playerが生きている時になっていたSEを止める
+	get_tree().call_group("PlayerAliveSEGroup", "stop")
+	collision_sound.play()
 	main.trigger_game_over()
 	print("player has collided")
 
@@ -180,3 +203,10 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	# pass
 	if anim_name == "jump" or anim_name == "slide":
 		$AnimationPlayer.play("run")
+
+# ポーズ解除時など、顔がワープしてしまうときに呼び出す
+func reset_face_tracking_state():
+	previous_face_y = face_y
+	# ついでにスライディングの蓄積値もリセットしておくと安全
+	upward_face_movement_while_sliding = 0.0
+	print("顔トラッキングの状態をリセットしました")

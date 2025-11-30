@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://d2ad41ft7jv16"]
+[gd_scene load_steps=6 format=3 uid="uid://d2ad41ft7jv16"]
 
 [ext_resource type="Script" uid="uid://dyyrs72w7v2ij" path="res://Scritpts/title.gd" id="1_ekrfg"]
 [ext_resource type="FontFile" uid="uid://b81osdtyc14l0" path="res://Fonts/MPLUSRounded1c-Medium.ttf" id="2_fp2oq"]
 [ext_resource type="PackedScene" uid="uid://dnt4ambx7svqh" path="res://Scenes/description.tscn" id="2_q2qps"]
+[ext_resource type="AudioStream" uid="uid://dvlgcn45i47ec" path="res://Audio/decisionButton.ogg" id="4_q2qps"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oyqm6"]
 bg_color = Color(0.569282, 0.631757, 0.417047, 1)
@@ -16,6 +17,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ekrfg")
 description_scene = ExtResource("2_q2qps")
+button_click_sound = ExtResource("4_q2qps")
 
 [node name="TITLE" type="Label" parent="."]
 layout_mode = 1

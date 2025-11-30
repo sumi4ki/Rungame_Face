@@ -18,8 +18,12 @@ var is_game_cleared := false
 @export var pause_menu_scene: PackedScene
 @export var results_screen_scene: PackedScene
 
+@export var button_click_sound: AudioStream
+
 func _ready():
-	# print("aaaaaa",chunk_director.start_z_pos)
+	# アンミュート
+	var master_bus_index = AudioServer.get_bus_index("Master")
+	AudioServer.set_bus_mute(master_bus_index, false)
 	# ChunkDirectorから正しい開始位置を取得してプレイヤーを移動させる
 	player.global_position.z = chunk_director.start_z_pos
 	update_mode_display(Settings.start_section)#, player.speed
@@ -75,6 +79,10 @@ func _on_web_socket_receive_message_received(data: Dictionary) -> void:
 			print("カメラの起動に失敗しました。")
 
 func _on_pause_button_pressed() -> void:
+	AudioManager.play_se(button_click_sound)
+	# オーディオミュート
+	var master_bus_index = AudioServer.get_bus_index("Master")
+	AudioServer.set_bus_mute(master_bus_index, true)
 	# 1. ポーズメニューのインスタンスを作成
 	if get_node_or_null("PauseCanvas") == null:
 		# and !user_interface.get_node("Retry").visible:
@@ -84,6 +92,7 @@ func _on_pause_button_pressed() -> void:
 
 	# 3. ゲーム全体を一時停止
 	Engine.time_scale = 0.0
+	# get_tree().paused = true
 
 func update_mode_display(difficulty_enum):	#, speed
 	var mode_text = ""

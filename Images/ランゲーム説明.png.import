@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cdka7oce1iefo"
-path="res://.godot/imported/face_pointer80.png-e7649afc02a313c37dceda80ae0ac14c.ctex"
+uid="uid://hlajv76gryrs"
+path="res://.godot/imported/ランゲーム説明.png-c7f8217f89b6424665aa39dce8570db1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://face_pointer80.png"
-dest_files=["res://.godot/imported/face_pointer80.png-e7649afc02a313c37dceda80ae0ac14c.ctex"]
+source_file="res://Images/ランゲーム説明.png"
+dest_files=["res://.godot/imported/ランゲーム説明.png-c7f8217f89b6424665aa39dce8570db1.ctex"]
 
 [params]
 

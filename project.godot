@@ -16,12 +16,18 @@ config/features=PackedStringArray("4.4", "Forward Plus")
 
 [autoload]
 
-Settings="*res://Scritpts/settings.gd"
-FaceTrackingManager="*res://Scritpts/FaceTrackingManager.gd"
+Settings="*res://Scritpts/Autoload/settings.gd"
+FaceTrackingManager="*res://Scritpts/Autoload/FaceTrackingManager.gd"
+AudioManager="*res://Scenes/audio_manager.tscn"
 
 [dotnet]
 
 project/assembly_name="TempleRun_like"
+
+[global_group]
+
+PlayerAliveSEGroup=""
+Player=""
 
 [input]
 
