@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("2_p20fu")
 difficulty = "Easy"
-length = 10
+length = 40
 obstacles = Array[ExtResource("1_qwvdc")]([])
 z_pos_list = Array[int]([])
 float_amount_list = Array[float]([])

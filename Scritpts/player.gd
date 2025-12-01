@@ -34,6 +34,8 @@ var previous_face_y := 0.5
 @export var face_move_sensitivity := 0.7 # 例: 0.7なら顔の中心から±0.35で床の端まで移動
 
 func _ready():
+	# Autoloadのシグナルに接続
+	WebSocketManager.message_received.connect(_on_web_socket_receive_message_received)
 	# 初期の当たり判定を保存（例：カプセル）
 	default_shape = collider.shape.duplicate()
 	sliding_shape = CapsuleShape3D.new()

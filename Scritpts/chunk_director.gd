@@ -18,9 +18,9 @@ var obstacle_scenes := {
 }
 
 # ▼ 生成ロジックの設定
-@export var spawn_ahead_distance := 60.0 # プレイヤーの何m先にチャンクを生成するか
+@export var spawn_ahead_distance := 60.0 # プレイヤーの何m先のチャンクを生成するか
 @export var despawn_behind_distance := 20.0 # プレイヤーの何m後ろのチャンクを削除するか
-@export var spawn_space := 3	# playerが召喚されたあとのスペース
+@export var spawn_space := -50	# playerが召喚されたあとのスペース
 
 @export var play_area_width: float = 21.0
 @export var lane_width: float = 7.0

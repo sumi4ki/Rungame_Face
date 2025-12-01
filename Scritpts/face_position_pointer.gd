@@ -10,6 +10,8 @@ var current_x = 0.5
 var current_y = 0.5
 
 func _ready():
+	# Autoloadのシグナルに接続
+	WebSocketManager.message_received.connect(_on_web_socket_receive_message_received)
 	# 初期位置を画面中央に
 	screen_size = get_viewport_rect().size
 	target_position = screen_size / 2

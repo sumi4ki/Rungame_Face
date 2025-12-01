@@ -12,9 +12,6 @@ var is_game_cleared := false
 @onready var mode_label = $UserInterface/ModeLabel
 
 # UIノードへの参照
-#@onready var status_label = $UserInterface/StatusLabel
-#@onready var start_button = $UserInterface/StartButton
-@onready var websocket = $WebSocket_receive # WebSocketノードのパス
 @export var pause_menu_scene: PackedScene
 @export var results_screen_scene: PackedScene
 
@@ -22,16 +19,24 @@ var is_game_cleared := false
 @export var game_bgm: AudioStream
 
 func _ready():
+	# 初回：WebSocketMangagerの信号送信と、受信メソッドを接続
+	WebSocketManager.message_received.connect(_on_web_socket_receive_message_received)
+	# リトライ時：すでに接続が確立しているなら、"camera_ready" を待たずに生成を開始
+	if WebSocketManager.socket.get_ready_state() == WebSocketPeer.STATE_OPEN:
+		print("WebSocketは既に接続済みです。ゲームを開始します。")
+		chunk_director.start_spawning()
+
+	player.global_position.z = chunk_director.start_z_pos
+	update_mode_display(Settings.start_section)#, player.speed
+	user_interface.get_node("Retry").hide()
+
 	# アンミュート
 	var master_bus_index = AudioServer.get_bus_index("Master")
 	AudioServer.set_bus_mute(master_bus_index, false)
 	# BGM再生
 	if game_bgm:
-		AudioManager.play_bgm(game_bgm, -10.0)
-	# ChunkDirectorから正しい開始位置を取得してプレイヤーを移動させる
-	player.global_position.z = chunk_director.start_z_pos
-	update_mode_display(Settings.start_section)#, player.speed
-	user_interface.get_node("Retry").hide()
+		AudioManager.play_bgm(game_bgm, -13.0)
+	
 
 func _on_player_collided():
 	# プレイヤーが衝突したらゲームオーバー処理を呼び出す
@@ -72,12 +77,13 @@ func _unhandled_input(event):
 	if event.is_action_pressed("reset_tracking"):
 		# print("リセットボタンが押されました。WebSocket 接続をリセットします")
 		var message = {"command": "reset"}
-		websocket.send_message(message)
+		WebSocketManager.send_message(message)
 
 func _on_web_socket_receive_message_received(data: Dictionary) -> void:
 	# "status"キーがあるかチェック (カメラ準備メッセージ). カメラ初期化時に"status"を受信
 	if data.has("status"):
 		if data["status"] == "camera_ready":
+			# 初回起動時はここからスタート
 			chunk_director.start_spawning()
 		elif data["status"] == "camera_failed":
 			print("カメラの起動に失敗しました。")

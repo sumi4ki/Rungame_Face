@@ -19,6 +19,7 @@ config/features=PackedStringArray("4.4", "Forward Plus")
 Settings="*res://Scritpts/Autoload/settings.gd"
 FaceTrackingManager="*res://Scritpts/Autoload/FaceTrackingManager.gd"
 AudioManager="*res://Scenes/audio_manager.tscn"
+WebSocketManager="*res://Scritpts/Autoload/web_socket_receive.gd"
 
 [dotnet]
 

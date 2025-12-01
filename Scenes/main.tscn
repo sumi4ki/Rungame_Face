@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=3 uid="uid://b82x4yofhf5q2"]
+[gd_scene load_steps=57 format=3 uid="uid://b82x4yofhf5q2"]
 
 [ext_resource type="Script" uid="uid://cj2cntriqr25t" path="res://Scritpts/main.gd" id="1_b3802"]
 [ext_resource type="PackedScene" uid="uid://cfrq0wbrv3nt7" path="res://Scenes/pause_canvas.tscn" id="2_fevyy"]
@@ -17,7 +17,6 @@
 [ext_resource type="PackedScene" uid="uid://dkrsvdac0kqjb" path="res://Obstacles/floor_block.tscn" id="13_7k868"]
 [ext_resource type="PackedScene" uid="uid://o2ifiwxog2ks" path="res://Scenes/player.tscn" id="14_hpc6h"]
 [ext_resource type="Script" uid="uid://nx284e201d6t" path="res://Scritpts/camera_3d.gd" id="15_kltya"]
-[ext_resource type="Script" uid="uid://dc6uqga7qissg" path="res://Scritpts/web_socket_receive.gd" id="16_e08e2"]
 [ext_resource type="FontFile" uid="uid://b81osdtyc14l0" path="res://Fonts/MPLUSRounded1c-Medium.ttf" id="17_neg2b"]
 [ext_resource type="Script" uid="uid://vgetc4i5spxx" path="res://Scritpts/face_position_pointer.gd" id="18_b3802"]
 [ext_resource type="Texture2D" uid="uid://cdka7oce1iefo" path="res://Images/face_pointer80.png" id="18_fevyy"]
@@ -106,7 +105,7 @@ metadata/_custom_type_script = "uid://fq1bgubwinrk"
 [sub_resource type="Resource" id="Resource_0cbny"]
 script = ExtResource("5_ee4r6")
 difficulty = "Easy"
-length = 50
+length = 40
 obstacles = Array[ExtResource("7_3pmx8")]([])
 z_pos_list = Array[int]([])
 float_amount_list = Array[float]([])
@@ -205,7 +204,7 @@ metadata/_custom_type_script = "uid://fq1bgubwinrk"
 [sub_resource type="Resource" id="Resource_hrvbo"]
 script = ExtResource("5_ee4r6")
 difficulty = "Easy"
-length = 80
+length = 45
 obstacles = Array[ExtResource("7_3pmx8")]([])
 z_pos_list = Array[int]([])
 float_amount_list = Array[float]([])
@@ -366,9 +365,6 @@ shadow_enabled = true
 transform = Transform3D(0.663847, 0.747125, 0.0333412, 0.369429, -0.366361, 0.853992, 0.650253, -0.554603, -0.519217, 0.285425, 19.9957, -0.584858)
 shadow_enabled = true
 
-[node name="WebSocket_receive" type="Node" parent="."]
-script = ExtResource("16_e08e2")
-
 [node name="UserInterface" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 15
@@ -462,7 +458,4 @@ smooth_speed = 17.0
 environment = SubResource("Environment_u50mg")
 
 [connection signal="collided" from="Player" to="." method="_on_player_collided"]
-[connection signal="message_received" from="WebSocket_receive" to="." method="_on_web_socket_receive_message_received"]
-[connection signal="message_received" from="WebSocket_receive" to="Player" method="_on_web_socket_receive_message_received"]
-[connection signal="message_received" from="WebSocket_receive" to="UserInterface/FacePositionPointer" method="_on_web_socket_receive_message_received"]
 [connection signal="pressed" from="UserInterface/Pause_Button" to="." method="_on_pause_button_pressed"]
