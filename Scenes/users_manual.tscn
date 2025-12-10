@@ -1,0 +1,74 @@
+[gd_scene load_steps=6 format=3 uid="uid://dnt4ambx7svqh"]
+
+[ext_resource type="Script" uid="uid://bbhd61twfwi5r" path="res://Scritpts/Title/users_manual.gd" id="1_0pri1"]
+[ext_resource type="FontFile" uid="uid://b81osdtyc14l0" path="res://Assets/Fonts/MPLUSRounded1c-Medium.ttf" id="1_l0p43"]
+[ext_resource type="Texture2D" uid="uid://hlajv76gryrs" path="res://Assets/Images/ランゲーム説明.png" id="2_ndt3t"]
+[ext_resource type="AudioStream" uid="uid://dvlgcn45i47ec" path="res://Assets/Audio/SE/decisionButton.ogg" id="4_d043a"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0pri1"]
+bg_color = Color(0.913019, 0.417859, 0.16943, 1)
+
+[node name="CanvasLayer" type="CanvasLayer"]
+script = ExtResource("1_0pri1")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="bg" type="ColorRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 2.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.41, 0.41, 0.41, 0.501961)
+
+[node name="resume" type="Button" parent="Control"]
+z_index = 1
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -99.0
+offset_top = -105.0
+offset_right = 101.0
+offset_bottom = -55.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("1_l0p43")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_0pri1")
+text = "もどる"
+
+[node name="TextureRect" type="TextureRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -428.0
+offset_top = -291.0
+offset_right = 348.0
+offset_bottom = 130.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.1, 1.1)
+texture = ExtResource("2_ndt3t")
+
+[node name="ButtonSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_d043a")
+pitch_scale = 0.7
+
+[connection signal="pressed" from="Control/resume" to="." method="_on_resume_pressed"]

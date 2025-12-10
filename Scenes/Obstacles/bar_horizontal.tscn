@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://kj3pt7xaih1c"]
+
+[ext_resource type="PackedScene" uid="uid://2i3b42o5t6nr" path="res://Scenes/Obstacles/base.tscn" id="1_iqp68"]
+
+[node name="Obstacle" instance=ExtResource("1_iqp68")]
+rotation_edit_mode = 0
+shape_size = Vector3(21, 3.5, 2)

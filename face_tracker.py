@@ -4,7 +4,7 @@ import cv2
 import mediapipe as mp
 import json
 
-# MediaPipeの準備 (変更なし)
+# MediaPipeの準備
 mp_face_detection = mp.solutions.face_detection
 face_detection = mp_face_detection.FaceDetection(model_selection=0, min_detection_confidence=0.5)
 
@@ -12,11 +12,12 @@ face_detection = mp_face_detection.FaceDetection(model_selection=0, min_detectio
 # グローバル変数ではなく、各接続ごとに管理する
 class TrackerState:
     def __init__(self):
+        # last_bbox : [x, y, width, height]
         self.last_bbox = None
         self.last_known_face_x = 0.5
         self.last_known_face_y = 0.5
 
-# ▼▼▼ 受信処理を別の関数に分離 ▼▼▼
+# ▼▼▼ 受信処理 ▼▼▼
 async def receive_handler(websocket, state):
     """クライアントからのメッセージを受信し続けるタスク"""
     try:
@@ -34,10 +35,10 @@ async def receive_handler(websocket, state):
     finally:
         print("受信ハンドラを終了します。")
 
-# ▼▼▼ 送信・カメラ処理を別の関数に分離 ▼▼▼
+# ▼▼▼ カメラ処理・送信 ▼▼▼　
 async def camera_handler(websocket, state):
     """カメラ処理を行い、座標を送信し続けるタスク"""
-    cap = cv2.VideoCapture(0)   # , cv2.CAP_DSHOW)このオプションはwindowsのみのオプション
+    cap = cv2.VideoCapture(0)   # , cv2.CAP_DSHOWオプションはwindowsのみ
 
     # ▼▼▼ カメラの起動チェックとステータス通知 ▼▼▼
     if not cap.isOpened():
@@ -51,8 +52,7 @@ async def camera_handler(websocket, state):
     
     
     
-    print("トラッキングを開始します。")
-    # ▲▲▲ ここまでが大きな変更点 ▲▲▲
+    print("トラッキングを開始。")
     try:
         while True:
             ret, frame = cap.read()
@@ -60,49 +60,65 @@ async def camera_handler(websocket, state):
                 break
 
             h, w, _ = frame.shape
-            
-            # (画像処理ロジックは以前のまま)
+
+            # bboxを取得
             if state.last_bbox is not None:
-                # ROI処理...
+                # ROI処理　
+                # 前回のbboxの中心座標を計算　ピクセル単位　
                 cx = int((state.last_bbox[0] + state.last_bbox[2] / 2) * w)
                 cy = int((state.last_bbox[1] + state.last_bbox[3] / 2) * h)
+                # 前回のbboxの大きさの内、大きい辺の3.5倍をサイズにする
                 roi_size = int(max(state.last_bbox[2] * w, state.last_bbox[3] * h) * 3.5)
+                # 画面からはみ出す場合はクランプ
                 x1 = max(cx - roi_size // 2, 0)
                 y1 = max(cy - roi_size // 2, 0)
                 x2 = min(cx + roi_size // 2, w)
                 y2 = min(cy + roi_size // 2, h)
+                # frameをroi_sizeで切り出す
                 roi_frame = frame[y1:y2, x1:x2]
                 rgb_frame = cv2.cvtColor(roi_frame, cv2.COLOR_BGR2RGB)
+                # roi_frameの中で顔検出を行う
                 results = face_detection.process(rgb_frame)
             else:
                 rgb_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
                 results = face_detection.process(rgb_frame)
                 x1, y1 = 0, 0
 
+            # 顔検出結果のフィルタリング
             detected = False
             if results.detections:
                 best_detection = None
                 max_area = 0
+                # 見つかった顔の内
                 for detection in results.detections:
                     bbox = detection.location_data.relative_bounding_box
                     area = bbox.width * bbox.height
+                    # bbox面積が最大のものを採用する
                     if area > max_area:
                         max_area = area
                         best_detection = detection
-                
+
+                # 採用されたbboxからface_x, face_y計算
                 if best_detection is not None:
                     bbox = best_detection.location_data.relative_bounding_box
+                    # 前のフレームでROIで切り出している場合、絶対座標を計算
                     if state.last_bbox is not None:
-                        abs_xmin = x1 + int(bbox.xmin * (x2 - x1))
+                        # 前のROIで 左上(x1,y1) 右下(x2, y2)が計算されている
+                        # bbox.xmin * ROI_WidthすることでROI内での相対座標計算してx1に加算すると絶対座標になる。yも同様
+                        abs_xmin = x1 + int(bbox.xmin * (x2 - x1)) 
                         abs_ymin = y1 + int(bbox.ymin * (y2 - y1))
+                        # bbox.widthがROI内での 0-1 の値であるため、ROI_Widthをかけてピクセル数に変換
                         abs_width = int(bbox.width * (x2 - x1))
                         abs_height = int(bbox.height * (y2 - y1))
+
+                    # 前回のROIがない場合、今回のbboxをそのまま使用
                     else:
                         abs_xmin = int(bbox.xmin * w)
                         abs_ymin = int(bbox.ymin * h)
                         abs_width = int(bbox.width * w)
                         abs_height = int(bbox.height * h)
 
+                    # 得られた絶対座標の値から顔の位置を計算
                     face_x = (abs_xmin + abs_width / 2) / w
                     face_y = (abs_ymin + abs_height / 2) / h
                     # 共有stateを更新
@@ -121,19 +137,20 @@ async def camera_handler(websocket, state):
                 state.last_bbox = None
 
 
-            # 1. まず座標を送信
+            # 座標を送信
             await websocket.send(json.dumps({
                 "face_x": state.last_known_face_x,
                 "face_y": state.last_known_face_y
             }))
 
-            # 2. asyncioに処理を少し譲る
-            await asyncio.sleep(0.01) # sleep時間を少し短くしても良い
+            await asyncio.sleep(0.01) 
 
-            # 3. 最後にデバッグウィンドウを表示・更新
+            '''
+            # デバッグウィンドウを表示・更新
             cv2.imshow('Face Camera', frame)
             if cv2.waitKey(1) & 0xFF == ord('q'):
                 break
+            '''
             '''
             cv2.imshow('Face Camera', frame)
             if cv2.waitKey(1) & 0xFF == ord('q'):
@@ -156,7 +173,6 @@ async def camera_handler(websocket, state):
         cap.release()
         cv2.destroyAllWindows()
 
-# ▼▼▼ メインのハンドラを修正 ▼▼▼
 async def handler(websocket, path):
     """クライアント接続時に呼ばれ、送受信タスクを起動する"""
     print(f"クライアント {websocket.remote_address} が接続しました。")
@@ -180,7 +196,6 @@ async def handler(websocket, path):
     
     print(f"クライアント {websocket.remote_address} との接続を終了します。")
 
-# (main関数は変更なし)
 async def main():
     async with websockets.serve(handler, "localhost", 1234):
         print("WebSocket Server started on ws://localhost:1234")

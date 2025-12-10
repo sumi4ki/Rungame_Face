@@ -1,29 +1,28 @@
 [gd_scene load_steps=57 format=3 uid="uid://b82x4yofhf5q2"]
 
-[ext_resource type="Script" uid="uid://cj2cntriqr25t" path="res://Scritpts/main.gd" id="1_b3802"]
+[ext_resource type="Script" uid="uid://cj2cntriqr25t" path="res://Scritpts/Main/main.gd" id="1_b3802"]
 [ext_resource type="PackedScene" uid="uid://cfrq0wbrv3nt7" path="res://Scenes/pause_canvas.tscn" id="2_fevyy"]
-[ext_resource type="PackedScene" uid="uid://d3a40kflpk5yj" path="res://Chunk_Set/combined3_set/results_screen.tscn" id="3_hibaj"]
-[ext_resource type="AudioStream" uid="uid://dvlgcn45i47ec" path="res://Audio/SE/decisionButton.ogg" id="4_hibaj"]
-[ext_resource type="Script" uid="uid://cfmqtd5o6memd" path="res://Scritpts/chunk_director.gd" id="4_pdsj5"]
-[ext_resource type="Script" uid="uid://fq1bgubwinrk" path="res://Scritpts/ChunkData.gd" id="5_ee4r6"]
-[ext_resource type="AudioStream" uid="uid://chsxc4s25wisw" path="res://Audio/BGM/gameBGM.ogg" id="5_pdsj5"]
-[ext_resource type="Resource" uid="uid://1e8fvdubqcqx" path="res://Chunk_Set/easy/free_space.tres" id="6_gt3je"]
-[ext_resource type="Script" uid="uid://c16mlyirwc8xk" path="res://Scritpts/ObstacleData.gd" id="7_3pmx8"]
-[ext_resource type="Resource" uid="uid://bvi2x8doqicwt" path="res://Obstacles_locate/wall_left_0.tres" id="8_u50mg"]
-[ext_resource type="Resource" uid="uid://bvk8jxvfo1nwk" path="res://Obstacles_locate/wall_right_0.tres" id="9_cbgmd"]
-[ext_resource type="Resource" uid="uid://dmdis5xg5vhf3" path="res://Obstacles_locate/wall_center_0.tres" id="10_1w6v2"]
-[ext_resource type="Resource" uid="uid://cqe2hb8pmpn8o" path="res://Obstacles_locate/bar-01.tres" id="11_ueoa1"]
-[ext_resource type="Resource" uid="uid://5log6w4w0eyn" path="res://Chunk_Set/combined_set/bar_only_sliding.tres" id="12_6vcvc"]
-[ext_resource type="PackedScene" uid="uid://dkrsvdac0kqjb" path="res://Obstacles/floor_block.tscn" id="13_7k868"]
+[ext_resource type="PackedScene" uid="uid://d3a40kflpk5yj" path="res://ObstaclesResources/Chunk_Template/combined3_set/results_screen.tscn" id="3_hibaj"]
+[ext_resource type="AudioStream" uid="uid://dvlgcn45i47ec" path="res://Assets/Audio/SE/decisionButton.ogg" id="4_hibaj"]
+[ext_resource type="Script" uid="uid://cfmqtd5o6memd" path="res://Scritpts/Main/chunk_director.gd" id="4_pdsj5"]
+[ext_resource type="Script" uid="uid://fq1bgubwinrk" path="res://Scritpts/Main/Obstacles/ChunkData.gd" id="5_ee4r6"]
+[ext_resource type="AudioStream" uid="uid://chsxc4s25wisw" path="res://Assets/Audio/BGM/gameBGM.ogg" id="5_pdsj5"]
+[ext_resource type="Resource" uid="uid://1e8fvdubqcqx" path="res://ObstaclesResources/Chunk_Template/easy/free_space.tres" id="6_gt3je"]
+[ext_resource type="Script" uid="uid://c16mlyirwc8xk" path="res://Scritpts/Main/Obstacles/ObstacleType.gd" id="7_3pmx8"]
+[ext_resource type="Resource" uid="uid://bvi2x8doqicwt" path="res://ObstaclesResources/PositionData/wall_left_0.tres" id="8_u50mg"]
+[ext_resource type="Resource" uid="uid://bvk8jxvfo1nwk" path="res://ObstaclesResources/PositionData/wall_right_0.tres" id="9_cbgmd"]
+[ext_resource type="Resource" uid="uid://dmdis5xg5vhf3" path="res://ObstaclesResources/PositionData/wall_center_0.tres" id="10_1w6v2"]
+[ext_resource type="Resource" uid="uid://cqe2hb8pmpn8o" path="res://ObstaclesResources/PositionData/bar-01.tres" id="11_ueoa1"]
+[ext_resource type="Resource" uid="uid://5log6w4w0eyn" path="res://ObstaclesResources/Chunk_Template/combined_set/bar_only_sliding.tres" id="12_6vcvc"]
+[ext_resource type="PackedScene" uid="uid://dkrsvdac0kqjb" path="res://Scenes/Obstacles/floor_block.tscn" id="13_7k868"]
 [ext_resource type="PackedScene" uid="uid://o2ifiwxog2ks" path="res://Scenes/player.tscn" id="14_hpc6h"]
-[ext_resource type="Script" uid="uid://nx284e201d6t" path="res://Scritpts/camera_3d.gd" id="15_kltya"]
-[ext_resource type="FontFile" uid="uid://b81osdtyc14l0" path="res://Fonts/MPLUSRounded1c-Medium.ttf" id="17_neg2b"]
-[ext_resource type="Script" uid="uid://vgetc4i5spxx" path="res://Scritpts/face_position_pointer.gd" id="18_b3802"]
-[ext_resource type="Texture2D" uid="uid://cdka7oce1iefo" path="res://Images/face_pointer80.png" id="18_fevyy"]
+[ext_resource type="Script" uid="uid://nx284e201d6t" path="res://Scritpts/Main/camera_3d.gd" id="15_kltya"]
+[ext_resource type="FontFile" uid="uid://b81osdtyc14l0" path="res://Assets/Fonts/MPLUSRounded1c-Medium.ttf" id="17_neg2b"]
+[ext_resource type="Script" uid="uid://vgetc4i5spxx" path="res://Scritpts/Main/face_position_pointer.gd" id="18_b3802"]
+[ext_resource type="Texture2D" uid="uid://cdka7oce1iefo" path="res://Assets/Images/face_pointer80.png" id="18_fevyy"]
 
 [sub_resource type="Resource" id="Resource_82xsv"]
 script = ExtResource("5_ee4r6")
-difficulty = "Easy"
 length = 30
 obstacles = Array[ExtResource("7_3pmx8")]([ExtResource("8_u50mg")])
 z_pos_list = Array[int]([1])
@@ -32,7 +31,6 @@ metadata/_custom_type_script = "uid://fq1bgubwinrk"
 
 [sub_resource type="Resource" id="Resource_ryguw"]
 script = ExtResource("5_ee4r6")
-difficulty = "Easy"
 length = 30
 obstacles = Array[ExtResource("7_3pmx8")]([ExtResource("9_cbgmd")])
 z_pos_list = Array[int]([1])
@@ -41,7 +39,6 @@ metadata/_custom_type_script = "uid://fq1bgubwinrk"
 
 [sub_resource type="Resource" id="Resource_d13ii"]
 script = ExtResource("5_ee4r6")
-difficulty = "Easy"
 length = 30
 obstacles = Array[ExtResource("7_3pmx8")]([ExtResource("10_1w6v2")])
 z_pos_list = Array[int]([1])
@@ -50,7 +47,6 @@ metadata/_custom_type_script = "uid://fq1bgubwinrk"
 
 [sub_resource type="Resource" id="Resource_1u8w0"]
 script = ExtResource("5_ee4r6")
-difficulty = "Easy"
 length = 30
 obstacles = Array[ExtResource("7_3pmx8")]([ExtResource("8_u50mg")])
 z_pos_list = Array[int]([1])
@@ -59,7 +55,6 @@ metadata/_custom_type_script = "uid://fq1bgubwinrk"
 
 [sub_resource type="Resource" id="Resource_0odxb"]
 script = ExtResource("5_ee4r6")
-difficulty = "Easy"
 length = 40
 obstacles = Array[ExtResource("7_3pmx8")]([ExtResource("10_1w6v2")])
 z_pos_list = Array[int]([1])
@@ -68,7 +63,6 @@ metadata/_custom_type_script = "uid://fq1bgubwinrk"
 
 [sub_resource type="Resource" id="Resource_lswn8"]
 script = ExtResource("5_ee4r6")
-difficulty = "Easy"
 length = 40
 obstacles = Array[ExtResource("7_3pmx8")]([ExtResource("11_ueoa1")])
 z_pos_list = Array[int]([0])
@@ -77,7 +71,6 @@ metadata/_custom_type_script = "uid://fq1bgubwinrk"
 
 [sub_resource type="Resource" id="Resource_a6jrf"]
 script = ExtResource("5_ee4r6")
-difficulty = "Easy"
 length = 40
 obstacles = Array[ExtResource("7_3pmx8")]([ExtResource("11_ueoa1")])
 z_pos_list = Array[int]([0])
@@ -86,7 +79,6 @@ metadata/_custom_type_script = "uid://fq1bgubwinrk"
 
 [sub_resource type="Resource" id="Resource_qsp4k"]
 script = ExtResource("5_ee4r6")
-difficulty = "Easy"
 length = 60
 obstacles = Array[ExtResource("7_3pmx8")]([ExtResource("11_ueoa1")])
 z_pos_list = Array[int]([0])
@@ -95,7 +87,6 @@ metadata/_custom_type_script = "uid://fq1bgubwinrk"
 
 [sub_resource type="Resource" id="Resource_kq58d"]
 script = ExtResource("5_ee4r6")
-difficulty = "Easy"
 length = 60
 obstacles = Array[ExtResource("7_3pmx8")]([ExtResource("11_ueoa1")])
 z_pos_list = Array[int]([0])
@@ -104,7 +95,6 @@ metadata/_custom_type_script = "uid://fq1bgubwinrk"
 
 [sub_resource type="Resource" id="Resource_0cbny"]
 script = ExtResource("5_ee4r6")
-difficulty = "Easy"
 length = 40
 obstacles = Array[ExtResource("7_3pmx8")]([])
 z_pos_list = Array[int]([])
@@ -113,7 +103,6 @@ metadata/_custom_type_script = "uid://fq1bgubwinrk"
 
 [sub_resource type="Resource" id="Resource_4k2k6"]
 script = ExtResource("5_ee4r6")
-difficulty = "Easy"
 length = 30
 obstacles = Array[ExtResource("7_3pmx8")]([ExtResource("9_cbgmd")])
 z_pos_list = Array[int]([])
@@ -122,7 +111,6 @@ metadata/_custom_type_script = "uid://fq1bgubwinrk"
 
 [sub_resource type="Resource" id="Resource_0rl1p"]
 script = ExtResource("5_ee4r6")
-difficulty = "Easy"
 length = 40
 obstacles = Array[ExtResource("7_3pmx8")]([ExtResource("8_u50mg"), ExtResource("10_1w6v2")])
 z_pos_list = Array[int]([1, 1])
@@ -131,7 +119,6 @@ metadata/_custom_type_script = "uid://fq1bgubwinrk"
 
 [sub_resource type="Resource" id="Resource_ok6jj"]
 script = ExtResource("5_ee4r6")
-difficulty = "Easy"
 length = 40
 obstacles = Array[ExtResource("7_3pmx8")]([ExtResource("10_1w6v2"), ExtResource("9_cbgmd")])
 z_pos_list = Array[int]([1, 1])
@@ -140,7 +127,6 @@ metadata/_custom_type_script = "uid://fq1bgubwinrk"
 
 [sub_resource type="Resource" id="Resource_yaehf"]
 script = ExtResource("5_ee4r6")
-difficulty = "Easy"
 length = 40
 obstacles = Array[ExtResource("7_3pmx8")]([ExtResource("11_ueoa1")])
 z_pos_list = Array[int]([1])
@@ -149,7 +135,6 @@ metadata/_custom_type_script = "uid://fq1bgubwinrk"
 
 [sub_resource type="Resource" id="Resource_b1qrp"]
 script = ExtResource("5_ee4r6")
-difficulty = "Easy"
 length = 30
 obstacles = Array[ExtResource("7_3pmx8")]([ExtResource("8_u50mg"), ExtResource("10_1w6v2")])
 z_pos_list = Array[int]([1, 1])
@@ -158,7 +143,6 @@ metadata/_custom_type_script = "uid://fq1bgubwinrk"
 
 [sub_resource type="Resource" id="Resource_come4"]
 script = ExtResource("5_ee4r6")
-difficulty = "Easy"
 length = 50
 obstacles = Array[ExtResource("7_3pmx8")]([ExtResource("10_1w6v2"), ExtResource("9_cbgmd")])
 z_pos_list = Array[int]([1, 1])
@@ -167,7 +151,6 @@ metadata/_custom_type_script = "uid://fq1bgubwinrk"
 
 [sub_resource type="Resource" id="Resource_h8e4i"]
 script = ExtResource("5_ee4r6")
-difficulty = "Easy"
 length = 30
 obstacles = Array[ExtResource("7_3pmx8")]([ExtResource("11_ueoa1")])
 z_pos_list = Array[int]([0])
@@ -176,7 +159,6 @@ metadata/_custom_type_script = "uid://fq1bgubwinrk"
 
 [sub_resource type="Resource" id="Resource_4lmeg"]
 script = ExtResource("5_ee4r6")
-difficulty = "Easy"
 length = 30
 obstacles = Array[ExtResource("7_3pmx8")]([ExtResource("11_ueoa1")])
 z_pos_list = Array[int]([0])
@@ -185,7 +167,6 @@ metadata/_custom_type_script = "uid://fq1bgubwinrk"
 
 [sub_resource type="Resource" id="Resource_0cp0l"]
 script = ExtResource("5_ee4r6")
-difficulty = "Easy"
 length = 30
 obstacles = Array[ExtResource("7_3pmx8")]([ExtResource("11_ueoa1"), ExtResource("11_ueoa1")])
 z_pos_list = Array[int]([1, 1])
@@ -194,7 +175,6 @@ metadata/_custom_type_script = "uid://fq1bgubwinrk"
 
 [sub_resource type="Resource" id="Resource_2cqfq"]
 script = ExtResource("5_ee4r6")
-difficulty = "Easy"
 length = 10
 obstacles = Array[ExtResource("7_3pmx8")]([ExtResource("8_u50mg"), ExtResource("10_1w6v2"), ExtResource("9_cbgmd")])
 z_pos_list = Array[int]([1, 1, 1])
@@ -203,7 +183,6 @@ metadata/_custom_type_script = "uid://fq1bgubwinrk"
 
 [sub_resource type="Resource" id="Resource_hrvbo"]
 script = ExtResource("5_ee4r6")
-difficulty = "Easy"
 length = 45
 obstacles = Array[ExtResource("7_3pmx8")]([])
 z_pos_list = Array[int]([])
@@ -212,7 +191,6 @@ metadata/_custom_type_script = "uid://fq1bgubwinrk"
 
 [sub_resource type="Resource" id="Resource_xuqvo"]
 script = ExtResource("5_ee4r6")
-difficulty = "Easy"
 length = 30
 obstacles = Array[ExtResource("7_3pmx8")]([ExtResource("8_u50mg"), ExtResource("10_1w6v2"), ExtResource("11_ueoa1"), ExtResource("11_ueoa1")])
 z_pos_list = Array[int]([1, 1, 1, 1])
@@ -221,7 +199,6 @@ metadata/_custom_type_script = "uid://fq1bgubwinrk"
 
 [sub_resource type="Resource" id="Resource_seu75"]
 script = ExtResource("5_ee4r6")
-difficulty = "Easy"
 length = 30
 obstacles = Array[ExtResource("7_3pmx8")]([ExtResource("11_ueoa1")])
 z_pos_list = Array[int]([0])
@@ -230,7 +207,6 @@ metadata/_custom_type_script = "uid://fq1bgubwinrk"
 
 [sub_resource type="Resource" id="Resource_facbu"]
 script = ExtResource("5_ee4r6")
-difficulty = "Easy"
 length = 30
 obstacles = Array[ExtResource("7_3pmx8")]([ExtResource("10_1w6v2"), ExtResource("9_cbgmd")])
 z_pos_list = Array[int]([1, 1])
@@ -239,7 +215,6 @@ metadata/_custom_type_script = "uid://fq1bgubwinrk"
 
 [sub_resource type="Resource" id="Resource_d2t1y"]
 script = ExtResource("5_ee4r6")
-difficulty = "Easy"
 length = 40
 obstacles = Array[ExtResource("7_3pmx8")]([ExtResource("8_u50mg"), ExtResource("10_1w6v2"), ExtResource("11_ueoa1"), ExtResource("11_ueoa1")])
 z_pos_list = Array[int]([1, 1, 1, 1])
@@ -248,7 +223,6 @@ metadata/_custom_type_script = "uid://fq1bgubwinrk"
 
 [sub_resource type="Resource" id="Resource_gngh3"]
 script = ExtResource("5_ee4r6")
-difficulty = "Easy"
 length = 20
 obstacles = Array[ExtResource("7_3pmx8")]([ExtResource("11_ueoa1")])
 z_pos_list = Array[int]([0])
@@ -257,7 +231,6 @@ metadata/_custom_type_script = "uid://fq1bgubwinrk"
 
 [sub_resource type="Resource" id="Resource_0n3wm"]
 script = ExtResource("5_ee4r6")
-difficulty = "Easy"
 length = 60
 obstacles = Array[ExtResource("7_3pmx8")]([ExtResource("10_1w6v2"), ExtResource("9_cbgmd")])
 z_pos_list = Array[int]([1, 1])
@@ -266,7 +239,6 @@ metadata/_custom_type_script = "uid://fq1bgubwinrk"
 
 [sub_resource type="Resource" id="Resource_wnkbs"]
 script = ExtResource("5_ee4r6")
-difficulty = "Easy"
 length = 30
 obstacles = Array[ExtResource("7_3pmx8")]([ExtResource("8_u50mg"), ExtResource("10_1w6v2"), ExtResource("11_ueoa1")])
 z_pos_list = Array[int]([1, 1, 1])
@@ -275,7 +247,6 @@ metadata/_custom_type_script = "uid://fq1bgubwinrk"
 
 [sub_resource type="Resource" id="Resource_qnost"]
 script = ExtResource("5_ee4r6")
-difficulty = "Easy"
 length = 30
 obstacles = Array[ExtResource("7_3pmx8")]([ExtResource("11_ueoa1"), ExtResource("10_1w6v2"), ExtResource("9_cbgmd")])
 z_pos_list = Array[int]([1, 1, 1])
@@ -284,7 +255,6 @@ metadata/_custom_type_script = "uid://fq1bgubwinrk"
 
 [sub_resource type="Resource" id="Resource_f6a44"]
 script = ExtResource("5_ee4r6")
-difficulty = "Easy"
 length = 30
 obstacles = Array[ExtResource("7_3pmx8")]([ExtResource("8_u50mg"), ExtResource("10_1w6v2"), ExtResource("11_ueoa1")])
 z_pos_list = Array[int]([1, 1, 1])
@@ -293,7 +263,6 @@ metadata/_custom_type_script = "uid://fq1bgubwinrk"
 
 [sub_resource type="Resource" id="Resource_uypp3"]
 script = ExtResource("5_ee4r6")
-difficulty = "Easy"
 length = 50
 obstacles = Array[ExtResource("7_3pmx8")]([])
 z_pos_list = Array[int]([])

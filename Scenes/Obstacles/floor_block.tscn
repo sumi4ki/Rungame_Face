@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://dkrsvdac0kqjb"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_go2dp"]
+size = Vector3(21, 1, 20)
+
+[sub_resource type="BoxMesh" id="BoxMesh_go2dp"]
+size = Vector3(21, 1, 20)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uognk"]
+metallic_specular = 0.0
+
+[node name="FloorBlock" type="Node3D"]
+rotation_edit_mode = 0
+script = null
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_go2dp")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+mesh = SubResource("BoxMesh_go2dp")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_uognk")

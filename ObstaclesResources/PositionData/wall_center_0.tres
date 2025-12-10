@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="ObstacleData" load_steps=2 format=3 uid="uid://dmdis5xg5vhf3"]
+
+[ext_resource type="Script" uid="uid://c16mlyirwc8xk" path="res://Scritpts/Main/Obstacles/ObstacleType.gd" id="1_examw"]
+
+[resource]
+script = ExtResource("1_examw")
+type = "wall"
+lane = 1
+metadata/_custom_type_script = "uid://c16mlyirwc8xk"

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ChunkData" load_steps=4 format=3 uid="uid://5log6w4w0eyn"]
+
+[ext_resource type="Script" uid="uid://c16mlyirwc8xk" path="res://Scritpts/Main/Obstacles/ObstacleType.gd" id="1_r7rt7"]
+[ext_resource type="Resource" uid="uid://cqe2hb8pmpn8o" path="res://ObstaclesResources/PositionData/bar-01.tres" id="2_dqiup"]
+[ext_resource type="Script" uid="uid://fq1bgubwinrk" path="res://Scritpts/Main/Obstacles/ChunkData.gd" id="3_3aq6n"]
+
+[resource]
+script = ExtResource("3_3aq6n")
+length = 40
+obstacles = Array[ExtResource("1_r7rt7")]([ExtResource("2_dqiup"), ExtResource("2_dqiup")])
+z_pos_list = Array[int]([1, 1])
+float_amount_list = Array[float]([1.2, 4.7])
+metadata/_custom_type_script = "uid://fq1bgubwinrk"

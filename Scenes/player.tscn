@@ -1,10 +1,10 @@
 [gd_scene load_steps=14 format=3 uid="uid://o2ifiwxog2ks"]
 
-[ext_resource type="Script" uid="uid://dupp8cl7yrvis" path="res://Scritpts/player.gd" id="1_onrkg"]
-[ext_resource type="AudioStream" uid="uid://pun5or6gl8i3" path="res://Audio/SE/sliding.ogg" id="2_6t5aa"]
-[ext_resource type="AudioStream" uid="uid://rali2psfh4i0" path="res://Audio/SE/jump.ogg" id="3_6t5aa"]
-[ext_resource type="AudioStream" uid="uid://c0nuxfbj4wlp5" path="res://Audio/SE/run.ogg" id="4_vgqql"]
-[ext_resource type="AudioStream" uid="uid://dpreex5gn674s" path="res://Audio/SE/Hit.ogg" id="5_fkybt"]
+[ext_resource type="Script" uid="uid://dupp8cl7yrvis" path="res://Scritpts/Main/player.gd" id="1_onrkg"]
+[ext_resource type="AudioStream" uid="uid://pun5or6gl8i3" path="res://Assets/Audio/SE/sliding.ogg" id="2_6t5aa"]
+[ext_resource type="AudioStream" uid="uid://rali2psfh4i0" path="res://Assets/Audio/SE/jump.ogg" id="3_6t5aa"]
+[ext_resource type="AudioStream" uid="uid://c0nuxfbj4wlp5" path="res://Assets/Audio/SE/run.ogg" id="4_vgqql"]
+[ext_resource type="AudioStream" uid="uid://dpreex5gn674s" path="res://Assets/Audio/SE/Hit.ogg" id="5_fkybt"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_i3pqv"]
 radius = 0.4
@@ -170,6 +170,8 @@ script = ExtResource("1_onrkg")
 shape = SubResource("CapsuleShape3D_i3pqv")
 
 [node name="Pivot" type="Node3D" parent="."]
+rotation_edit_mode = 0
+script = null
 
 [node name="CapsuleMesh" type="MeshInstance3D" parent="Pivot"]
 mesh = SubResource("CapsuleMesh_hqtel")
